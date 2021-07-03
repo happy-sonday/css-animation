@@ -40,7 +40,14 @@ body {
     height: 100vh;
     perspective: 1000px;
 }
-
+.stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+}
 
 .house{
     width: 100vw;
@@ -98,7 +105,7 @@ body {
 
 .progress-bar{
     height: 5px;
-    width: 30%;
+    width: 0;
     background: #00a8ff;
 }
 
