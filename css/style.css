@@ -72,12 +72,14 @@ body {
     transform: rotateY(90deg);
     position: absolute;
     left: -500vw;
+    background: #f8f8f8;
 }
 .wall-right{
     width: 1000vw;
-    transform: rotateY(90deg) translateZ(100vw);
+    transform: rotateY(90deg) translateZ(100vw);/* NOTE: .wall의 100vw만큼 이동해서 만듦 */
     position: absolute;
     left: -500vw;
+    background: #f8f8f8;
 }
 
 .wall-content{
@@ -86,6 +88,11 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+.wall-front-a {transform: translateZ(300vw);}
+.wall-front-b {transform: translateZ(50vw);}
+.wall-front-c {transform: translateZ(-200vw);}
+.wall-front-d {transform: translateZ(-500vw);}
 .wall-title{
     font-size: 5rem;
 }
