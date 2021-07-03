@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>setTimeout</title>
+    <style>
+      .btn {
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">취소</button>
+
+    <script>
+      let removeTiming;
+
+      let timerId;
+      function sample() {
+        console.log("실행");
+        timerId = requestAnimationFrame(sample);
+      }
+      //timeId = setInterval(sample, 1000);
+
+      // 1초 간격으로 메시지를 보여줌
+      //   let sec = 1;
+      // timerId = setInterval(() => console.log(sec++), 1000);
+
+      //   const btnElem = document.querySelector(".btn");
+
+      btnElem.addEventListener("click", () => {
+        //clearInterval(timerId);
+        cancelAnimationFrame(timerId);
+      });
+
+      // 5초 후에 정지
+      //   setTimeout(() => {
+      //     clearInterval(timerId);
+      //     alert("정지");
+      //   }, 5000);
+    </script>
+  </body>
+</html>
