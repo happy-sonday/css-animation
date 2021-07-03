@@ -85,6 +85,23 @@ body {
 .wall-title{
     font-size: 5rem;
 }
+
+.progress-bar-con{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 5px;
+    width: 100vw;
+    background: #555;
+    z-index: 100;
+}
+
+.progress-bar{
+    height: 5px;
+    width: 30%;
+    background: #00a8ff;
+}
+
 /* world */
 /* .world {
     position: fixed;
