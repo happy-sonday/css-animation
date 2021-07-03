@@ -27,12 +27,55 @@ body {
     background: #fff000;
     transition: background .5s;
 }
-body[data-char='ragirl'] {
+/* body[data-char='ragirl'] {
     background: #ff7200;
+} */
+
+
+.world{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px;
+}
+.world{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
 }
 
+.house{
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+
+}
+
+.wall{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.wall-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.wall-title{
+    font-size: 5rem;
+}
 /* world */
-.world {
+/* .world {
     position: fixed;
     left: 0;
     top: 0;
@@ -99,9 +142,9 @@ body[data-char='ragirl'] {
     height: 100%;
     background: #00a8ff;
 }
-
+ */
 /* character */
-.character {
+/* .character {
     position: absolute;
     left: 12%;
     bottom: 5%;
@@ -249,10 +292,10 @@ body[data-char='ragirl'] .character-leg-left {
     transform-origin: center top;
 }
 body[data-char='ragirl'] .character-leg-left .face-front { background-image: url('../images/ragirl_leg_1.png'); }
-body[data-char='ragirl'] .character-leg-left .face-back { background-image: url('../images/ragirl_leg_0.png'); }
+body[data-char='ragirl'] .character-leg-left .face-back { background-image: url('../images/ragirl_leg_0.png'); } */
 
 /* character button */
-.select-character {
+/* .select-character {
     display: flex;
     align-items: center;
     position: fixed;
@@ -287,3 +330,4 @@ body[data-char='ilbuni'] .select-character-btn-ilbuni,
 body[data-char='ragirl'] .select-character-btn-ragirl {
     opacity: 1;
 }
+ */
