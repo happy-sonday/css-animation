@@ -40,28 +40,19 @@ body {
     height: 100vh;
     perspective: 1000px;
 }
-.world{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    transform-style: preserve-3d;
-}
+
 
 .house{
     width: 100vw;
     height: 100vh;
     transform: translateZ(-490vw);/* NOTE:ZOOM OUT 효과 */
     transform-style: preserve-3d;
-    
-
 }
 
-.wall{
+.wall {
     position: absolute;
     left: 0;
-    top:0;
+    top: 0;
     width: 100vw;
     height: 100vh;
     background: rgba(255, 255, 255, 0.8);
@@ -70,14 +61,12 @@ body {
 .wall-left{
     width: 1000vw;
     transform: rotateY(90deg);
-    position: absolute;
     left: -500vw;
     background: #f8f8f8;
 }
 .wall-right{
     width: 1000vw;
     transform: rotateY(90deg) translateZ(100vw);/* NOTE: .wall의 100vw만큼 이동해서 만듦 */
-    position: absolute;
     left: -500vw;
     background: #f8f8f8;
 }
