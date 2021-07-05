@@ -34,4 +34,6 @@
 
   window.addEventListener("resize", resizeHandler);
   resizeHandler();
+
+  new Character();
 })();
