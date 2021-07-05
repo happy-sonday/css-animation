@@ -34,6 +34,9 @@
 
   window.addEventListener("resize", resizeHandler);
   resizeHandler();
-
-  new Character();
+  stageElem.addEventListener("click", function (e) {
+    new Character({
+      xPos: (e.clientX / window.innerWidth) * 100,
+    });
+  });
 })();

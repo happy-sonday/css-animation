@@ -1,4 +1,4 @@
-function Character() {
+function Character(info) {
   //인스턴스 객체의 속성으로 쓰게됨
   this.mainElem = document.createElement("div");
   this.mainElem.classList.add("character");
@@ -31,4 +31,5 @@ function Character() {
         `;
 
   document.querySelector(".stage").appendChild(this.mainElem);
+  this.mainElem.style.left = `${(left = info.xPos)}%`;
 }
