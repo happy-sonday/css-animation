@@ -32,4 +32,23 @@ function Character(info) {
 
   document.querySelector(".stage").appendChild(this.mainElem);
   this.mainElem.style.left = `${(left = info.xPos)}%`;
+  //하단의 character때문에 this(Character 인스턴스로 접근)하여 init()가 자동완성
+  this.init();
 }
+
+/**NOTE:프로토타입에 메서드 속성을 추가생성 */
+// Character.prototype.xxxx=function(){
+// };
+
+/**NOTE:프로토타입 재정의때문에 constructor를 재 생성 */
+Character.prototype = {
+  constructor: Character,
+  init: function () {
+    const self = this;
+    window.addEventListener("scroll", function () {
+      //this가 가리키는것은 this
+      //console.log(this);
+      self.mainElem.classList.add("running");
+    });
+  },
+};
