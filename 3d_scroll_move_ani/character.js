@@ -33,6 +33,8 @@ function Character(info) {
   document.querySelector(".stage").appendChild(this.mainElem);
   this.mainElem.style.left = `${(left = info.xPos)}%`;
   //하단의 character때문에 this(Character 인스턴스로 접근)하여 init()가 자동완성
+  //스크롤인지 아닌지
+  this.scrollState = false;
   this.init();
 }
 
@@ -46,9 +48,23 @@ Character.prototype = {
   init: function () {
     const self = this;
     window.addEventListener("scroll", function () {
-      //this가 가리키는것은 this
-      //console.log(this);
-      self.mainElem.classList.add("running");
+      //스크롤 진행 중에는 scrollState에 할당된 timeoutId는 누적된 채로 setTimeout에 설정된 타이머를 초기화
+      //스크롤이 멈추면 clearTimeout은 실행하지않고 마지막(제일 최근) setTimeout에 의해 running이 remove
+      clearTimeout(self.scrollState);
+
+      //처음 한번만 실행
+      if (!self.scrollState) {
+        self.mainElem.classList.add("running");
+      }
+
+      //동시에 scrollState에 0.5초후에 코드를 실행, 0.5초전에는 scrollState에 setTimeout에 의해 timeoutID 순차적누적
+      self.scrollState = setTimeout(() => {
+        self.scrollState = false;
+
+        self.mainElem.classList.remove("running");
+      }, 100);
+
+      console.log(self.scrollState);
     });
   },
 };
