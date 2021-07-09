@@ -35,6 +35,10 @@ function Character(info) {
   //하단의 character때문에 this(Character 인스턴스로 접근)하여 init()가 자동완성
   //스크롤인지 아닌지
   this.scrollState = false;
+  //ㅂ로 이전 스크롤 위치
+  this.lastScrollTop = 0;
+  this.xPos = info.xPos;
+  this.speed = 1;
   this.init();
 }
 
@@ -64,7 +68,41 @@ Character.prototype = {
         self.mainElem.classList.remove("running");
       }, 100);
 
-      console.log(self.scrollState);
+      //console.log(self.scrollState);
+
+      //console.log("self.lastScrollTop", self.lastScrollTop);
+      //console.log("pageYOffset", pageYOffset);
+
+      //NOTE:이전 스크롤 위치와 현재 스크롤 위치 비교
+      if (self.lastScrollTop > this.pageYOffset) {
+        self.mainElem.setAttribute("data-direction", "backward");
+      } else {
+        self.mainElem.setAttribute("data-direction", "forward");
+      }
+
+      //NOTE:스크롤 감지를 통한 headerMenu 노출에 응용할 수 있다.
+      self.lastScrollTop = this.pageYOffset;
+    });
+
+    /**키보드 좌우 이벤트 */
+    window.addEventListener("keydown", function (e) {
+      console.log(e.keyCode);
+      if (e.keyCode == 37) {
+        self.mainElem.setAttribute("data-direction", "left");
+        self.xPos -= self.speed;
+        self.mainElem.style.left = self.xPos + "%";
+        self.mainElem.classList.add("running");
+      } else if (e.keyCode == 39) {
+        self.mainElem.setAttribute("data-direction", "right");
+        self.xPos += self.speed;
+        self.mainElem.style.left = self.xPos + "%";
+        self.mainElem.classList.add("running");
+      }
+    });
+
+    /**키보드를 뗏을때, 러닝 중지 */
+    window.addEventListener("keyup", function (e) {
+      self.mainElem.classList.remove("running");
     });
   },
 };
