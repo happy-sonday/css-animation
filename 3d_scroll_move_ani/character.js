@@ -43,6 +43,8 @@ function Character(info) {
 
   //좌우 이동중 여부
   this.runningState = false;
+  //requestAnimationFrame Id를 담을변수
+  this.rafId;
   this.init();
 }
 
@@ -117,6 +119,11 @@ Character.prototype = {
     /**키보드를 뗏을때, 러닝 중지 */
     window.addEventListener("keyup", function (e) {
       self.mainElem.classList.remove("running");
+      //NOTE: 멈춤 동작 추가
+      this.cancelAnimationFrame(self.rafId);
+      //키다운 다시 누를 수 있도록 초기화
+      //console.log(self.runningState);
+      self.runningState = false;
     });
   },
 
@@ -127,7 +134,10 @@ Character.prototype = {
       self.xPos += self.speed;
     }
 
+    //NOTE:화면 밖으로 나가지 않도록 범위제한
+    //console.log(self.xPos);
     if (self.xPos < 2) {
+      //self.xPos=info => self.xPos=2;
       self.xPos = 2;
     }
 
@@ -137,7 +147,7 @@ Character.prototype = {
 
     self.mainElem.style.left = self.xPos + "%";
 
-    requestAnimationFrame(function () {
+    self.rafId = requestAnimationFrame(function () {
       self.run(self);
     });
   },
