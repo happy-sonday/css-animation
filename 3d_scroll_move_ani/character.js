@@ -38,7 +38,11 @@ function Character(info) {
   //ㅂ로 이전 스크롤 위치
   this.lastScrollTop = 0;
   this.xPos = info.xPos;
-  this.speed = 1;
+  this.direction;
+  this.speed = 0.3;
+
+  //좌우 이동중 여부
+  this.runningState = false;
   this.init();
 }
 
@@ -86,23 +90,55 @@ Character.prototype = {
 
     /**키보드 좌우 이벤트 */
     window.addEventListener("keydown", function (e) {
-      console.log(e.keyCode);
+      //NOTE:누르고 있는동안 keydown 중첩 방지;
+      if (self.runningState) return;
+      //console.log("키다운이벤트발생", e);
+
       if (e.keyCode == 37) {
         self.mainElem.setAttribute("data-direction", "left");
-        self.xPos -= self.speed;
-        self.mainElem.style.left = self.xPos + "%";
+        self.direction = "left";
+        // self.xPos -= self.speed;
+        // self.mainElem.style.left = self.xPos + "%";
         self.mainElem.classList.add("running");
+        self.run(self);
+        //키를 누를때 flag값으로 넘겨 상단에 조건문으로 현재 조건문을 다시 접근 못하도록 하기위함
+        self.runningState = true;
       } else if (e.keyCode == 39) {
+        self.direction = "right";
         self.mainElem.setAttribute("data-direction", "right");
-        self.xPos += self.speed;
-        self.mainElem.style.left = self.xPos + "%";
+        // self.xPos += self.speed;
+        // self.mainElem.style.left = self.xPos + "%";
         self.mainElem.classList.add("running");
+        self.run(self);
+        self.runningState = true;
       }
     });
 
     /**키보드를 뗏을때, 러닝 중지 */
     window.addEventListener("keyup", function (e) {
       self.mainElem.classList.remove("running");
+    });
+  },
+
+  run: function (self) {
+    if (self.direction == "left") {
+      self.xPos -= self.speed;
+    } else if (self.direction == "right") {
+      self.xPos += self.speed;
+    }
+
+    if (self.xPos < 2) {
+      self.xPos = 2;
+    }
+
+    if (self.xPos > 88) {
+      self.xPos = 88;
+    }
+
+    self.mainElem.style.left = self.xPos + "%";
+
+    requestAnimationFrame(function () {
+      self.run(self);
     });
   },
 };
