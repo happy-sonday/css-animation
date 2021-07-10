@@ -37,6 +37,10 @@
   stageElem.addEventListener("click", function (e) {
     new Character({
       xPos: (e.clientX / window.innerWidth) * 100,
+
+      //캐릭터 생성시 0과 1사이 속도 임의로 부여
+      //최대값 0.5 최소값 0.2
+      speed: Math.random() * 0.5 + 0.2,
     });
   });
 })();

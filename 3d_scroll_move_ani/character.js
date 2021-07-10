@@ -39,7 +39,7 @@ function Character(info) {
   this.lastScrollTop = 0;
   this.xPos = info.xPos;
   this.direction;
-  this.speed = 0.3;
+  this.speed = info.speed;
 
   //좌우 이동중 여부
   this.runningState = false;
